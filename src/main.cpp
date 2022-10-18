@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "compiler.h"
+
 int main(int argc, char* argv[]) {
 	using namespace std;
 
@@ -26,7 +28,14 @@ int main(int argc, char* argv[]) {
 
 	string source = source_stream.str();
 
-	cout << source << endl;
+	Result rs = compile_bf(source);
+	if (rs.has_error) {
+		cout << "ERROR." << endl;
+		
+		return 1;
+	}
+
+	cout << rs.output << endl;
   
  	return 0;
 }
