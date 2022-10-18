@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Compile
     - uses: actions/checkout@v3
-    - run: |
+    - name: Compile
+      run: |
         mkdir -p out
         g++ src/*.cpp -o out/bf-compiler
     - name: Upload artifact
-    - uses: actions/upload-artifact@v2
-    - with:
+      uses: actions/upload-artifact@v2
+      with:
         name: bf-compiler
         path: out/bf-compiler
