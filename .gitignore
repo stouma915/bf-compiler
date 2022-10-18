@@ -31,5 +31,6 @@
 *.out
 *.app
 
-# Test file
+# Test files
+*.asm
 *.bf
