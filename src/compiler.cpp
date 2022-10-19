@@ -8,7 +8,7 @@ Result compile_bf(std::string source) {
 	int label_num = 0;
 	bool error = false;
 
-	AssemblyBuilder asmb = AssemblyBuilder("");
+	AssemblyBuilder asmb = AssemblyBuilder();
 
 	asmb.append_line("section .text");
 	asmb.append_line("	global _start");
