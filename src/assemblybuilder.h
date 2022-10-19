@@ -6,6 +6,10 @@ class AssemblyBuilder {
 	public:
 		std::string content;
 
+		AssemblyBuilder() {
+			content = "";
+		}
+
 		AssemblyBuilder(std::string _content) {
 			content = _content;
 		}
