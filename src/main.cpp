@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "compiler.h"
+#include "compile.h"
 
 int main(int argc, char* argv[]) {
 	using namespace std;
