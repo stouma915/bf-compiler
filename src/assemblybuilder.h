@@ -14,7 +14,7 @@ class AssemblyBuilder {
 			            content = _content;
 		        }
 
-	            void append(std::string str) {
+	                void append(std::string str) {
 			            content += str;
 		        }
 
