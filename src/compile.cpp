@@ -6,7 +6,7 @@
 Compiler compile_once(std::string source, Compiler compiler, bool loop) {
         compiler.start_label(loop);
 
-        int finalize = true;
+        bool finalize = true;
 
         for (int i = 0; i < source.length(); i ++) {
                 char c = source[i];
