@@ -1,5 +1,9 @@
 #include "util.h"
 
+bool starts_with(std::string str, std::string prefix) {
+    return str.rfind(prefix, 0) == 0;
+}
+
 int search_loop_end(std::string source, int start_index) {
     if (source[start_index] != '[') {
         return -1;

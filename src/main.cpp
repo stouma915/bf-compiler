@@ -3,20 +3,64 @@
 #include <sstream>
 
 #include "compile.h"
+#include "util.h"
+
+#define VERSION "1.0.0"
+
+void print_usage(std::string file_name) {
+    std::cout << "bf-compiler v" << VERSION << "\n"
+                 "\n"
+                 "Usage:\n"
+                 "   " << file_name << " [FLAGS] [SOURCE]\n"
+                 "\n"
+                 "Flags:\n"
+                 "   -h, --help    prints help information.\n"
+                 "\n"
+                 "Args:\n"
+                 "   <SOURCE>      Brainf**k source file.\n";
+}
 
 int main(int argc, char* argv[]) {
     using namespace std;
 
     if (argc < 2) {
-        cout << "no input." << endl;
+        print_usage(argv[0]);
 
         return 1;
     }
 
+    string source_file_name;
+    for (int i = 1; i < argc; i ++) {
+        string arg = argv[i];
+
+        if (starts_with(arg, "-")) {
+            if (arg == "=h") {
+                print_usage(argv[0]);
+
+                return 0;
+            } else if (arg == "--help") {
+                print_usage(argv[0]);
+
+                return 0;
+            } else {
+                cout << "Found argument '" << arg << "' which wasn't expected, or isn't valid in this context.\n"
+                        "\n"
+                        "Usage:\n"
+                        "   " << argv[0] << " [FLAGS] [SOURCE]\n"
+                        "\n"
+                        "For more information try --help\n";
+                
+                return 1;
+            }
+        } else {
+            source_file_name = arg;
+        }
+    }
+
     ifstream source_file;
-    source_file.open(argv[1], ios::in);
+    source_file.open(source_file_name, ios::in);
     if (source_file.fail()) {
-        cout << "failed to open input file." << endl;
+        cout << "failed to open '" << source_file_name << "'." << endl;
 		
         return 1;
     }
