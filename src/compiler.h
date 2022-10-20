@@ -56,18 +56,29 @@ class Compiler {
                         append_line("");
                 }
 
-                void start_label() {
+                void start_label(bool loop = false) {
                         append("LB_");
                         append(std::to_string(label_num));
                         append_line(":");
 
+                        if (loop) {
+                            append_lb_line("cmp byte [edi], 0");
+                            append_lb("je LB_");
+                            append_line(std::to_string(label_num + 1));
+                            append_line("");
+                        }
+
                         label_num ++;
                 }
 
-                void end_label() {
+                void end_label(bool loop = false) {
                         append_line("");
                         append_lb("jmp LB_");
-                        append_line(std::to_string(label_num));
+                        if (loop) {
+                                append_line(std::to_string(label_num - 1));
+                        } else {
+                                append_line(std::to_string(label_num));
+                        }
                         append_line("");
                 }
 
