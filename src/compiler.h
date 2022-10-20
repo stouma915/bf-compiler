@@ -62,10 +62,10 @@ class Compiler {
                         append_line(":");
 
                         if (loop) {
-                            append_lb_line("cmp byte [edi], 0");
-                            append_lb("je LB_");
-                            append_line(std::to_string(label_num + 1));
-                            append_line("");
+                                append_lb_line("cmp byte [edi], 0");
+                                append_lb("je LB_");
+                                append_line(std::to_string(label_num + 1));
+                                append_line("");
                         }
 
                         label_num ++;
