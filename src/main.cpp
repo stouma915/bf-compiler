@@ -10,13 +10,13 @@ int main(int argc, char* argv[]) {
 	    if (argc < 2) {
  		        cout << "no input." << endl;
 
-    		    return 1;
+    		    	return 1;
   	    }
 
   	    ifstream source_file;
   	    source_file.open(argv[1], ios::in);
   	    if (source_file.fail()) {
-    	        cout << "failed to open input file." << endl;
+    	        	cout << "failed to open input file." << endl;
 		
 		        return 1;
   	    }
