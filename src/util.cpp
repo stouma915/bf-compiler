@@ -14,7 +14,7 @@ int search_loop_end(std::string source, int start_index) {
     int a = 0;
     int b = 0;
 
-    for (int i = start_index; i < source.length(); i ++) {
+    for (unsigned int i = start_index; i < source.length(); i ++) {
         char c = source[i];
 
         if (c == '[') {

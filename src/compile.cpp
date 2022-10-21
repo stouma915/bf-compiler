@@ -6,50 +6,53 @@
 Compiler compile_tailrec(std::string source, Compiler compiler, bool loop) {
     compiler.start_label(loop);
 
-    bool finalize = true;
+    for (unsigned int i = 0; i < source.length(); i ++) {
+        switch (source[i]) {
+            case '+':
+                compiler.append_lb_line("inc byte [edi]");
 
-    for (int i = 0; i < source.length(); i ++) {
-        char c = source[i];
-
-        if (c == '+') {
-            compiler.append_lb_line("inc byte [edi]");
-        } else if (c == '-') {
-            compiler.append_lb_line("dec byte [edi]");
-        } else if (c == '>') {
-            compiler.append_lb_line("inc edi");
-        } else if (c == '<') {
-            compiler.append_lb_line("dec edi");
-        } else if (c == '.') {
-            compiler.append_lb_line("mov eax, 4");
-            compiler.append_lb_line("mov ebx, 1");
-            compiler.append_lb_line("mov ecx, edi");
-            compiler.append_lb_line("mov edx, 1");
-            compiler.append_lb_line("int 0x80");
-        } else if (c == '[') {
-            int loop_end = search_loop_end(source, i);
-            if (loop_end == -1) {
-                compiler.has_error = true;
                 break;
-            }
+            case '-':
+                compiler.append_lb_line("dec byte [edi]");
 
-            finalize = false;
+                break;
+            case '>':
+                compiler.append_lb_line("inc edi");
 
-            compiler.end_label(loop);
+                break;
+            case '<':
+                compiler.append_lb_line("dec edi");
 
-            std::string loop_code = source.substr(i + 1, loop_end - (i + 1));
-            std::string after_loop = source.substr(loop_end + 1, source.length());
+                break;
+            case '.':
+                compiler.append_lb_line("mov eax, 4");
+                compiler.append_lb_line("mov ebx, 1");
+                compiler.append_lb_line("mov ecx, edi");
+                compiler.append_lb_line("mov edx, 1");
+                compiler.append_lb_line("int 0x80");
 
-            compiler = compile_tailrec(loop_code, compiler, true);
-            compiler = compile_tailrec(after_loop, compiler, false);
+                break;
+            case '[':
+                int loop_end = search_loop_end(source, i);
+                if (loop_end == -1) {
+                    compiler.has_error = true;
 
-            break;
+                    return compiler;
+                }
 
+                compiler.end_label(loop);
+
+                std::string loop_code = source.substr(i + 1, loop_end - (i + 1));
+                std::string after_loop = source.substr(loop_end + 1, source.length());
+
+                compiler = compile_tailrec(loop_code, compiler, true);
+                compiler = compile_tailrec(after_loop, compiler, false);
+
+                return compiler;
         }
     }
-
-    if (finalize) {
-        compiler.end_label(loop);
-    }
+    
+    compiler.end_label(loop);
 
     return compiler;
 }
