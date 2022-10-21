@@ -9,7 +9,7 @@ g++ -o bf-compiler src/*.cpp
 # compile Brainf**k
 ./bf-compiler source.bf > compiled.asm
 
-# run assembly
+# compile and run assembly
 nasm -f elf64 compiled.asm
 ld -o compiled compiled.o
 ./compiled
