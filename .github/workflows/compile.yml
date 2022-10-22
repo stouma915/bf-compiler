@@ -16,7 +16,7 @@ jobs:
     - name: Compile
       run: |
         mkdir -p out
-        g++ src/*.cpp -o out/bf-compiler
+        g++ src/*.cpp -o out/bf-compiler -Wall
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
