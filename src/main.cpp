@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
         string arg = argv[i];
 
         if (starts_with(arg, "-")) {
-            if (arg == "=h") {
+            if (arg == "-h") {
                 print_usage(argv[0]);
 
                 return 0;
