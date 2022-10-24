@@ -13,6 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Update g++
+      run: |
+        sudo apt-get update
+        sudo apt-get install g++
     - name: Compile
       run: |
         mkdir -p out
