@@ -76,10 +76,8 @@ int main(int argc, char* argv[]) {
     if (rs.has_error()) {
 	    Error err = rs.error.value();
 
-        cout << "[" << err.line << ":" << err.index << "] ";
-        cout << err.kind << ": ";
-        cout << err.message << endl;
-
+        cout << err.kind << ": " << err.message << endl;
+        
         return 1;
     }
 

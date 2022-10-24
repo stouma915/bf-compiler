@@ -42,13 +42,9 @@ Compiler compile_tailrec(std::string source, Compiler compiler, bool loop) {
             case '[':
                 int loop_end = search_loop_end(source, i);
                 if (loop_end == -1) {
-                    std::tuple<int, int> line_and_index = search_line_index(source, i);    
-
                     Error err = Error(
-                            std::get<0>(line_and_index),
-                            std::get<1>(line_and_index),
                             "Syntax Error",
-                            "']' wasn't found."
+                            "Mismatched number of '[' and ']'."
                     );
                     compiler.error = err;
 

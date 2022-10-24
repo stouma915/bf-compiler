@@ -32,36 +32,3 @@ int search_loop_end(std::string source, int start_index) {
     return result;
 }
 
-int count_in(std::string str, char c) {
-    int count = 0;
-
-    for (unsigned int i = 0; i < str.length(); i ++) {
-        if (str[i] == c) {
-            count ++;
-        }
-    }
-
-    return count;
-}
-
-std::tuple<int, int> search_line_index(std::string source, int index) {
-    int line = count_in(source.substr(0, index + 1), '\n');
-
-    int ind = 0;
-
-    int i = 0;
-    while (i != index) {
-        switch (source[i]) {
-            case '\n':
-                ind = 0;
-                break;
-            default:
-                ind ++;
-        }
-
-        i ++;
-    }
-
-    return std::make_tuple(line, ind);
-}
-
