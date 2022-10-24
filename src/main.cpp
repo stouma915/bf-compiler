@@ -6,7 +6,7 @@
 #include "error.h"
 #include "util.h"
 
-#define VERSION "1.0.1"
+#define VERSION "1.0.2"
 
 void print_usage(std::string file_name) {
     std::cout << "bf-compiler v" << VERSION << "\n"
