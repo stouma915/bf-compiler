@@ -20,7 +20,7 @@ jobs:
     - name: Compile
       run: |
         mkdir -p out
-        g++ src/*.cpp -std=c++20 -o out/bf-compiler -Wall
+        g++ src/*.cpp -std=c++17 -o out/bf-compiler -Wall
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
