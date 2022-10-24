@@ -1,9 +1,16 @@
 #include "compile.h"
 
+#include <tuple>
+
 #include "compiler.h"
+#include "error.h"
 #include "util.h"
 
 Compiler compile_tailrec(std::string source, Compiler compiler, bool loop) {
+    if (compiler.has_error()) {
+        return compiler;
+    }
+
     compiler.start_label(loop);
 
     for (unsigned int i = 0; i < source.length(); i ++) {
@@ -35,7 +42,15 @@ Compiler compile_tailrec(std::string source, Compiler compiler, bool loop) {
             case '[':
                 int loop_end = search_loop_end(source, i);
                 if (loop_end == -1) {
-                    compiler.has_error = true;
+                    std::tuple<int, int> line_and_index = search_line_index(source, i);    
+
+                    Error err = Error(
+                            std::get<0>(line_and_index),
+                            std::get<1>(line_and_index),
+                            "Syntax Error",
+                            "']' wasn't found."
+                    );
+                    compiler.error = err;
 
                     return compiler;
                 }

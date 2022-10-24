@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "compile.h"
+#include "error.h"
 #include "util.h"
 
 #define VERSION "1.0.1"
@@ -72,9 +73,13 @@ int main(int argc, char* argv[]) {
     string source = source_stream.str();
 
     Result rs = compile_bf(source);
-    if (rs.has_error) {
-        cout << "ERROR." << endl;
-		
+    if (rs.has_error()) {
+	    Error err = rs.error.value();
+
+        cout << "[" << err.line << ":" << err.index << "] ";
+        cout << err.kind << ": ";
+        cout << err.message << endl;
+
         return 1;
     }
 

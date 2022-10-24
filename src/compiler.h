@@ -1,8 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <optional>
 
 #include "assemblybuilder.h"
+#include "error.h"
 #include "result.h"
 
 #define INDENT "      "
@@ -11,22 +13,22 @@ class Compiler {
     public:
         int label_num;
         AssemblyBuilder asmb;
-        bool has_error;
+        std::optional<Error> error;
 
         Compiler() {
             label_num = 0;
             asmb = AssemblyBuilder();
-            has_error = false;
+            error = {};
         }
 
         Compiler(
             int _label_num,
             AssemblyBuilder _asmb,
-            bool _has_error
+            std::optional<Error> _error
         ) {
             label_num = _label_num;
             asmb = _asmb;
-            has_error = _has_error;
+            error = _error;
         }
 
         void append(std::string str) {
@@ -96,8 +98,12 @@ class Compiler {
             append_lb_line("buffer: resb 1000");
         }
 
+        bool has_error() {
+            return error != std::nullopt;
+        }
+
         Result result() {
-            return Result(asmb.as_str(), has_error);
+            return Result(asmb.as_str(), error);
         }
 };
 

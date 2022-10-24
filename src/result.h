@@ -1,15 +1,22 @@
 #pragma once
 
 #include <iostream>
+#include <optional>
+
+#include "error.h"
 
 class Result {
     public:
         std::string output;
-        bool has_error;
+        std::optional<Error> error;
 
-        Result(std::string _output, bool _has_error) {
+        Result(std::string _output, std::optional<Error> _error) {
             output = _output;
-            has_error = _has_error;
+            error = _error;
+        }
+
+        bool has_error() {
+            return error != std::nullopt;
         }
 };
 
