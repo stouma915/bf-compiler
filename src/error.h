@@ -14,5 +14,7 @@ class Error {
             kind = _kind;
             message = _message;
         }
+
+        std::string to_string();
 };
 
