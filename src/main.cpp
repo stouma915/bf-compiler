@@ -2,8 +2,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "compile.h"
 #include "error.h"
+#include "normalcompiler.h"
 #include "util.h"
 
 #define VERSION "1.0.2"
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
 
     string source = source_stream.str();
 
-    Result rs = compile_bf(source);
+    Result rs = NormalCompiler().compile_bf(source);
     if (rs.has_error()) {
 	    Error err = rs.error.value();
 
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    cout << rs.output << endl;
+    cout << rs.output;
   
     return 0;
 }
