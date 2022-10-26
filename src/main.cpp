@@ -2,7 +2,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "error.h"
 #include "normalcompiler.h"
 #include "util.h"
 
