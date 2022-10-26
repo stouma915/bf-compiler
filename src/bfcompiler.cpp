@@ -1,7 +1,5 @@
 #include "bfcompiler.h"
 
-#define INDENT "    "
-
 void BfCompiler::append(std::string str) {
     output += str;
 }
