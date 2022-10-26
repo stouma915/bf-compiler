@@ -15,8 +15,6 @@ class Result {
             error = _error;
         }
 
-        bool has_error() {
-            return error != std::nullopt;
-        }
+        bool has_error();
 };
 
