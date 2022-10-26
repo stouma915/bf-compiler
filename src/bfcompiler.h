@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-#include "error.h"
 #include "result.h"
 
 #define INDENT "    "

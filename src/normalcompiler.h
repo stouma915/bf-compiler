@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include "bfcompiler.h"
-#include "error.h"
 
 class NormalCompiler : BfCompiler {
     public:
