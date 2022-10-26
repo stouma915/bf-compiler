@@ -42,8 +42,8 @@ Result NormalCompiler::compile_bf(std::string source) {
             case '[':
                 if (looping) {
                     Error err = Error(
-                            "Syntax Error",
-                            "Nested loops are not yet supported."
+                        "Syntax Error",
+                        "Nested loops are not yet supported."
                     );
 
                     return Result("", err);
