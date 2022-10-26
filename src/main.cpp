@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
 
     Result rs = NormalCompiler().compile_bf(source);
     if (rs.has_error()) {
-	    Error err = rs.error.value();
+        Error err = rs.error.value();
 
         cout << err.kind << ": " << err.message << endl;
         
