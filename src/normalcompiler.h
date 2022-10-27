@@ -7,11 +7,11 @@
 class NormalCompiler : BfCompiler {
     public:
         int label_num;
-        bool looping;
+        int loops;
 
         NormalCompiler() {
             label_num = 0;
-            looping = false;
+            loops = 0;
         }
 
         Result compile_bf(std::string source) override;

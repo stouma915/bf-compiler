@@ -40,7 +40,7 @@ Result NormalCompiler::compile_bf(std::string source) {
 
                 break;
             case '[':
-                if (looping) {
+                if (loops != 0) {
                     Error err = Error(
                         "Syntax Error",
                         "Nested loops are not yet supported."
@@ -64,11 +64,11 @@ Result NormalCompiler::compile_bf(std::string source) {
                 appendln(std::to_string(label_num + 1));
                 new_line();
 
-                looping = true;
+                loops ++;
 
                 break;
             case ']':
-                if (!looping) {
+                if (loops == 0) {
                     Error err = Error(
                         "Syntax Error",
                         "Unexpected ']'."
@@ -88,13 +88,13 @@ Result NormalCompiler::compile_bf(std::string source) {
                 append(std::to_string(label_num));
                 appendln(":");
 
-                looping = false;
+                loops --;
 
                 break;
         }
     }
 
-    if (looping) {
+    if (loops != 0) {
         Error err = Error(
             "Syntax Error",
             "']' wasn't found."
