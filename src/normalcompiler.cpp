@@ -5,12 +5,12 @@
 Result NormalCompiler::compile_bf(std::string source) {
     appendln("section .text");
     appendln_indent("global _start");
-    appendln();
+    new_line();
     appendln("_start:");
     appendln_indent("mov edi, buffer");
-    appendln();
+    new_line();
     appendln_indent("jmp LB_0");
-    appendln();
+    new_line();
     appendln("LB_0:");
 
     for (unsigned int i = 0; i < source.length(); i ++) {
@@ -51,10 +51,10 @@ Result NormalCompiler::compile_bf(std::string source) {
 
                 label_num ++;
 
-                appendln();
+                new_line();
                 append_indent("jmp LB_");
                 appendln(std::to_string(label_num));
-                appendln();
+                new_line();
 
                 append("LB_");
                 append(std::to_string(label_num));
@@ -62,7 +62,7 @@ Result NormalCompiler::compile_bf(std::string source) {
                 appendln_indent("cmp byte [edi], 0");
                 append_indent("je LB_");
                 appendln(std::to_string(label_num + 1));
-                appendln();
+                new_line();
 
                 looping = true;
 
@@ -77,13 +77,13 @@ Result NormalCompiler::compile_bf(std::string source) {
                     return Result("", err);
                 }
 
-                appendln();
+                new_line();
                 append_indent("jmp LB_");
                 appendln(std::to_string(label_num));
 
                 label_num ++;
 
-                appendln();
+                new_line();
                 append("LB_");
                 append(std::to_string(label_num));
                 appendln(":");
@@ -105,10 +105,10 @@ Result NormalCompiler::compile_bf(std::string source) {
 
     label_num ++;
 
-    appendln();
+    new_line();
     append_indent("jmp LB_");
     appendln(std::to_string(label_num));
-    appendln();
+    new_line();
 
     append("LB_");
     append(std::to_string(label_num));
@@ -116,10 +116,10 @@ Result NormalCompiler::compile_bf(std::string source) {
     appendln_indent("mov eax, 1");
     appendln_indent("mov ebx, 0");
     appendln_indent("int 0x80");
-    appendln();
+    new_line();
     appendln("section .bss");
     appendln_indent("buffer: resb 1000");
-    appendln();
+    new_line();
 
     return Result(output, std::nullopt);
 }

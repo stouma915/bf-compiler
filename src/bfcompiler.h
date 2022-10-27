@@ -12,9 +12,9 @@ class BfCompiler {
 
         void append(std::string str);
         void appendln(std::string str);
-        void appendln();
         void append_indent(std::string str);
         void appendln_indent(std::string str);
+        void new_line();
 
         virtual Result compile_bf(std::string source) = 0;
 };
