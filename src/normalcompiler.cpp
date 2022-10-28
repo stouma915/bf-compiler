@@ -43,7 +43,7 @@ Result NormalCompiler::compile_bf(std::string source) {
                 if (looping) {
                     Error err = Error(
                         "Syntax Error",
-                        "Nested loops are not yet supported."
+                        "Unexpected '['."
                     );
 
                     return Result("", err);
