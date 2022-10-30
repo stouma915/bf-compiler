@@ -22,4 +22,3 @@ void BfCompiler::appendln_indent(std::string str) {
 void BfCompiler::new_line() {
     appendln("");
 }
-
