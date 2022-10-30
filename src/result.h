@@ -17,4 +17,3 @@ class Result {
 
         bool has_error();
 };
-
