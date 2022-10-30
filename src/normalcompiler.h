@@ -16,4 +16,3 @@ class NormalCompiler : BfCompiler {
 
         Result compile_bf(std::string source) override;
 };
-
