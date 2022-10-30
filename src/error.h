@@ -17,4 +17,3 @@ class Error {
 
         std::string to_string();
 };
-
