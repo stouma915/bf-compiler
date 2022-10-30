@@ -18,4 +18,3 @@ class BfCompiler {
 
         virtual Result compile_bf(std::string source) = 0;
 };
-
