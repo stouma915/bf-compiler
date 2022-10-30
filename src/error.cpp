@@ -3,4 +3,3 @@
 std::string Error::to_string() {
     return kind + ": " + message;
 }
-
