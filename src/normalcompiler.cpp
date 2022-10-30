@@ -123,4 +123,3 @@ Result NormalCompiler::compile_bf(std::string source) {
 
     return Result(output, std::nullopt);
 }
-
