@@ -1,11 +1,13 @@
 # bf-compiler
 Compile Brainf**k to Assembly
 
+## Compile
+```bash
+g++ -std=c++17 -o bf-compiler src/*.cpp
+```
+
 ## Usage
 ```bash
-# compile bf-compiler
-g++ -std=c++17 -o bf-compiler src/*.cpp
-
 # compile Brainf**k
 ./bf-compiler source.bf > compiled.asm
 
