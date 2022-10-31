@@ -3,6 +3,8 @@
 #include <optional>
 
 Result NormalCompiler::compile_bf(std::string source) {
+    using namespace std;
+
     appendln("section .text");
     appendln_indent("global _start");
     new_line();
@@ -53,15 +55,15 @@ Result NormalCompiler::compile_bf(std::string source) {
 
                 new_line();
                 append_indent("jmp LB_");
-                appendln(std::to_string(label_num));
+                appendln(to_string(label_num));
                 new_line();
 
                 append("LB_");
-                append(std::to_string(label_num));
+                append(to_string(label_num));
                 appendln(":");
                 appendln_indent("cmp byte [edi], 0");
                 append_indent("je LB_");
-                appendln(std::to_string(label_num + 1));
+                appendln(to_string(label_num + 1));
                 new_line();
 
                 looping = true;
@@ -79,13 +81,13 @@ Result NormalCompiler::compile_bf(std::string source) {
 
                 new_line();
                 append_indent("jmp LB_");
-                appendln(std::to_string(label_num));
+                appendln(to_string(label_num));
 
                 label_num ++;
 
                 new_line();
                 append("LB_");
-                append(std::to_string(label_num));
+                append(to_string(label_num));
                 appendln(":");
 
                 looping = false;
@@ -107,11 +109,11 @@ Result NormalCompiler::compile_bf(std::string source) {
 
     new_line();
     append_indent("jmp LB_");
-    appendln(std::to_string(label_num));
+    appendln(to_string(label_num));
     new_line();
 
     append("LB_");
-    append(std::to_string(label_num));
+    append(to_string(label_num));
     appendln(":");
     appendln_indent("mov eax, 1");
     appendln_indent("mov ebx, 0");
@@ -121,5 +123,5 @@ Result NormalCompiler::compile_bf(std::string source) {
     appendln_indent("buffer: resb 1000");
     new_line();
 
-    return Result(output, std::nullopt);
+    return Result(output, nullopt);
 }
