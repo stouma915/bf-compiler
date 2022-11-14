@@ -3,7 +3,7 @@ Compile Brainf**k to Assembly
 
 ## Compile
 ```bash
-g++ -std=c++17 -o bf-compiler src/*.cpp
+g++ src/*.cpp -o bf-compiler -std=c++17
 ```
 
 ## Usage
