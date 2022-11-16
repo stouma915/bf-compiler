@@ -18,6 +18,7 @@ void print_usage(std::string file_name) {
                  "Options:\n"
                  "   -h, --help    print help information.\n"
                  "   -o, --out     specify output file.\n"
+		 "   -m, --min     generate minimal Assembly.\n"
                  "\n"
                  "Args:\n"
                  "   <SOURCE>      Brainf**k source file.\n";
@@ -64,7 +65,9 @@ int main(int argc, char* argv[]) {
                 output_file_opt = argv[i + 1];
 
                 continue_once = true;
-            } else {
+            } else if (arg == "-m" || arg == "--min") {
+		compiler_opt.add_bool("minimal", true);
+	    } else {
                 cout << "Found argument '" << arg << "' which wasn't expected, or isn't valid in this context.\n"
                         "\n"
                         "Usage:\n"

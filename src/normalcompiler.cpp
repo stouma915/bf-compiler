@@ -8,14 +8,19 @@ Result NormalCompiler::compile_bf(
 ) {
     using namespace std;
 
+    bool min = false;
+    if (compiler_opt.has_bool("minimal")) {
+	min = compiler_opt.get_bool("minimal");
+    }
+
     appendln("section .text");
     appendln_indent("global _start");
-    new_line();
+    if (!min) new_line();
     appendln("_start:");
     appendln_indent("mov edi, buffer");
-    new_line();
+    if (!min) new_line();
     appendln_indent("jmp LB_0");
-    new_line();
+    if (!min) new_line();
     appendln("LB_0:");
 
     for (unsigned int i = 0; i < source.length(); i ++) {
@@ -56,10 +61,10 @@ Result NormalCompiler::compile_bf(
 
                 label_num ++;
 
-                new_line();
+                if (!min) new_line();
                 append_indent("jmp LB_");
                 appendln(to_string(label_num));
-                new_line();
+                if (!min) new_line();
 
                 append("LB_");
                 append(to_string(label_num));
@@ -67,7 +72,7 @@ Result NormalCompiler::compile_bf(
                 appendln_indent("cmp byte [edi], 0");
                 append_indent("je LB_");
                 appendln(to_string(label_num + 1));
-                new_line();
+                if (!min) new_line();
 
                 looping = true;
 
@@ -82,13 +87,13 @@ Result NormalCompiler::compile_bf(
                     return Result("", err);
                 }
 
-                new_line();
+                if (!min) new_line();
                 append_indent("jmp LB_");
                 appendln(to_string(label_num));
 
                 label_num ++;
 
-                new_line();
+                if (!min) new_line();
                 append("LB_");
                 append(to_string(label_num));
                 appendln(":");
@@ -110,10 +115,10 @@ Result NormalCompiler::compile_bf(
 
     label_num ++;
 
-    new_line();
+    if (!min) new_line();
     append_indent("jmp LB_");
     appendln(to_string(label_num));
-    new_line();
+    if (!min) new_line();
 
     append("LB_");
     append(to_string(label_num));
@@ -121,10 +126,10 @@ Result NormalCompiler::compile_bf(
     appendln_indent("mov eax, 1");
     appendln_indent("mov ebx, 0");
     appendln_indent("int 0x80");
-    new_line();
+    if (!min) new_line();
     appendln("section .bss");
     appendln_indent("buffer: resb 1000");
-    new_line();
+    if (!min) new_line();
 
     return Result(output, nullopt);
 }
