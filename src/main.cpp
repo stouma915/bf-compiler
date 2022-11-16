@@ -3,6 +3,7 @@
 #include <optional>
 #include <sstream>
 
+#include "compileropt.h"
 #include "normalcompiler.h"
 #include "util.h"
 
@@ -30,6 +31,8 @@ int main(int argc, char* argv[]) {
 
         return 1;
     }
+
+    CompilerOpt compiler_opt = CompilerOpt();
 
     optional<string> source_file_opt = nullopt;
     optional<string> output_file_opt = nullopt;
@@ -98,7 +101,7 @@ int main(int argc, char* argv[]) {
 
     string source = source_stream.str();
 
-    Result rs = NormalCompiler().compile_bf(source);
+    Result rs = NormalCompiler().compile_bf(source, compiler_opt);
     if (rs.has_error()) {
         cout << rs.error.value().to_string() << endl;
         

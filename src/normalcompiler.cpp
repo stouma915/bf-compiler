@@ -2,7 +2,10 @@
 
 #include <optional>
 
-Result NormalCompiler::compile_bf(std::string source) {
+Result NormalCompiler::compile_bf(
+    std::string source,
+    CompilerOpt compiler_opt
+) {
     using namespace std;
 
     appendln("section .text");

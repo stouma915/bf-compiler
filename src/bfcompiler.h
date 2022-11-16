@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "compileropt.h"
 #include "result.h"
 
 #define INDENT "    "
@@ -16,5 +17,8 @@ class BfCompiler {
         void appendln_indent(std::string str);
         void new_line();
 
-        virtual Result compile_bf(std::string source) = 0;
+        virtual Result compile_bf(
+	    std::string source,
+	    CompilerOpt compiler_opt
+	) = 0;
 };

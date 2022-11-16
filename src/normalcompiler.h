@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "compileropt.h"
 #include "bfcompiler.h"
 
 class NormalCompiler : BfCompiler {
@@ -14,5 +15,8 @@ class NormalCompiler : BfCompiler {
             looping = false;
         }
 
-        Result compile_bf(std::string source) override;
+        Result compile_bf(
+	    std::string source,
+	    CompilerOpt compiler_opt
+	) override;
 };
