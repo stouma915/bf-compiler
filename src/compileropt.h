@@ -9,7 +9,8 @@ class CompilerOpt {
 	std::map<std::string, std::string> str_opts;
 	std::map<std::string, bool> bool_opts;
 
-	CompilerOpt() { }
+	CompilerOpt() {
+	}
 
 	void add_int(std::string key, int opt);
 	void add_str(std::string key, std::string opt);
